@@ -3,8 +3,7 @@ import { Center, Select, CheckIcon, Alert } from "native-base";
 import { StyleSheet } from "react-native";
 import ListService from "./listService";
 import ServiceSorter from "./serviceSorter";
-import {baseUrl, getUserGarages} from "../../api/garagiste";
-import moment from "moment";
+import {getUserGarages} from "../../api/garagiste";
 
 const GaraGisteHome = ({navigation})=>{
     const [garages, setGarages] = React.useState([])

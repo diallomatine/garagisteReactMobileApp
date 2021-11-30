@@ -4,30 +4,15 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '
 import { NavigationContainer } from '@react-navigation/native';
 import GaragisteScreenStack from './garagiste';
 import { Image, StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import GarageGestion from './garage';
 
-const ImageTest = (props)=>{
-    return (
-        <SafeAreaView>
-            <Image  source=  {require("../../assets/apple.png")}
-                    style={styles.icon}
-            />
-            <DrawerContentScrollView {...props}>
-                <DrawerItemList {...props}>
-
-                </DrawerItemList>
-
-            </DrawerContentScrollView>
-        </SafeAreaView>
-        
-    )
-}
 
 const GaragisteHomeDrawer = ()=>{
     const Drawer = createDrawerNavigator();
 
     return (
         <NavigationContainer>
-            <Drawer.Navigator initialRouteName="Accueil" 
+            <Drawer.Navigator initialRouteName="Mes Garages" 
                 screenOptions={
                     {headerTitleAlign: "left"}                
                 }
@@ -44,8 +29,15 @@ const GaragisteHomeDrawer = ()=>{
                     component={GaragisteScreenStack}
                 />
                 <Drawer.Screen
-                    name="Image"
-                    component={ImageTest}
+                    name="Mes Garages"
+                    component={GarageGestion}
+                    options={
+                        {drawerIcon : ({ tintColor }) =>(
+                            <Image  source=  {require("../../assets/garage.png")}
+                            style={[styles.icon, { tintColor: tintColor }]}
+                            />
+                        )}
+                    }
                 />
             </Drawer.Navigator>
         </NavigationContainer>

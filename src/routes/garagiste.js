@@ -1,7 +1,4 @@
-//import { createStackNavigator } from "react-navigation-stack";
-//import { createAppContainer } from "react-navigation";
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
