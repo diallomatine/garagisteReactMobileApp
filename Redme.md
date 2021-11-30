@@ -1,0 +1,1 @@
+https://vertabelo.com/blog/a-database-model-to-manage-appointments-and-organize-schedules/
