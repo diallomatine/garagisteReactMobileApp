@@ -42,7 +42,7 @@ const BookingSorter = (props)=>{
         </Radio.Group>
 
         <TouchableOpacity onPress={()=> planRdvHandler()}>
-            <Image style = {styles.addIcon} source = {require("../../../assets/add.png")}/>
+            <Image style = {styles.addIcon} source = {require("../../../../assets/add.png")}/>
         </TouchableOpacity>
         
         </View>

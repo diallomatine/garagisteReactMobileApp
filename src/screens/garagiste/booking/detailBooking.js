@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import { Avatar, Heading } from "native-base";
-import {baseUrl} from "../../api/garagiste";
+import {baseUrl} from "../../../api/garagiste";
 import moment from "moment";
 require('moment/locale/fr');
 import BookingEditor from './bookingEditor'
@@ -28,7 +28,7 @@ const DetailBooking = ({route, navigation})=>{
         } catch (error) {
           return (
             <View>
-              <Image  style = {styles.profil} source = {require("../../../assets/user.png")}/>
+              <Image  style = {styles.profil} source = {require("../../../../assets/user.png")}/>
             </View>
   
           );
@@ -115,9 +115,9 @@ const DetailBooking = ({route, navigation})=>{
                     </Heading>
                 </View>
                 <View style={{flexDirection : "row"}}>
-                    <Image style={styles.moneyAvatar} source={require("../../../assets/orange_money.png")}/>
-                    <Image style={styles.moneyAvatar} source={require("../../../assets/credit-card.png")}/>
-                    <Image style={styles.moneyAvatar} source={require("../../../assets/moneyespece.png")}/>
+                    <Image style={styles.moneyAvatar} source={require("../../../../assets/orange_money.png")}/>
+                    <Image style={styles.moneyAvatar} source={require("../../../../assets/credit-card.png")}/>
+                    <Image style={styles.moneyAvatar} source={require("../../../../assets/moneyespece.png")}/>
                 </View>
                 
             </View>
@@ -137,11 +137,11 @@ const DetailBooking = ({route, navigation})=>{
 
             <View style={styles.booking_edit}>
                 <TouchableOpacity onPress= {handleEditClicked}>
-                    <Image  style={styles.edit_icon} source={require("../../../assets/pencil.png")}/>
+                    <Image  style={styles.edit_icon} source={require("../../../../assets/pencil.png")}/>
                 </TouchableOpacity>
                 
                 <TouchableOpacity onPress= {handleDeleteClicked}>
-                    <Image style={styles.edit_icon} source={require("../../../assets/delete.png")}/>
+                    <Image style={styles.edit_icon} source={require("../../../../assets/delete.png")}/>
                 </TouchableOpacity>
                 
 

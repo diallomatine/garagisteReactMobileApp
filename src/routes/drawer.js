@@ -1,9 +1,9 @@
 //import {createDrawerNavigator} from 'react-navigation-drawer'
 import React from 'react';
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import GaragisteScreenStack from './garagiste';
-import { Image, StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import GarageGestion from './garage';
 
 

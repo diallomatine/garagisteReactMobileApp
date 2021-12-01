@@ -3,8 +3,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 import GaraGisteHome from "../screens/garagiste/garagisteHome";
-import PlanAppointement from "../screens/garagiste/planAppointement";
-import DetailBooking from '../screens/garagiste/detailBooking';
+//import PlanAppointement from "../screens/garagiste/booking/planAppointement";
+import PlanAppointement from '../screens/garagiste/booking/planAppointement';
+import DetailBooking from '../screens/garagiste/booking/detailBooking';
 
 const GaragisteScreenStack = () =>{
     const Stack = createNativeStackNavigator();

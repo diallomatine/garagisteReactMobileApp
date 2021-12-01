@@ -2,8 +2,8 @@ import React, {useEffect} from "react";
 import {  Button, Heading, VStack , TextArea, Text, Input, Center} from "native-base";
 import { View, StyleSheet } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
-import GarageService from "./garage/garageservice";
-import {baseUrl} from "../../api/garagiste";
+import GarageService from "../garage/garageservice";
+import {baseUrl} from "../../../api/garagiste";
 
 
 const PlanAppointement = ({route, navigation}) =>{
