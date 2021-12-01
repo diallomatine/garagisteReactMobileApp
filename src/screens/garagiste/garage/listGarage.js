@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, Image, StyleSheet, View } from "react-native";
 import { Box, Heading, FlatList, HStack } from "native-base";
 import Garage from "./garage";
+import { getUserGarages } from "../../../api/garagiste";
 
 const data = [
     {
@@ -46,11 +47,21 @@ const data = [
   ]
 
 const ListGarage = ({navigation})=>{
+  const [garages, setGarages] = useState([])
 
     const addGarage = () => {
         //console.log(navigation);
         navigation.navigate("AddGarage")
     }
+
+    useEffect(()=>{
+      getUserGarages(1)
+            .then(response =>{ 
+              setGarages(response.data)
+              //console.log(response.data);
+            })
+            .catch(err => console.error(err))
+    }, [])
     return (
         <Box
       w={{
@@ -68,7 +79,7 @@ const ListGarage = ({navigation})=>{
         </View>
       
       <FlatList
-        data={data}
+        data={garages}
         renderItem={( item ) => <Garage item={item}   />}
         keyExtractor={(item) => item.id}
     />

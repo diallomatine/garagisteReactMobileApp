@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Radio , View} from "native-base";
 
 
-const ServiceSorter = (props)=>{
+const BookingSorter = (props)=>{
     
 
     const [state, setState] = React.useState("venir")
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ServiceSorter;
+export default BookingSorter;

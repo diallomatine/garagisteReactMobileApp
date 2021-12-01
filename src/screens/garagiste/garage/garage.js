@@ -1,9 +1,14 @@
 import React, {useEffect} from "react";
-import { Box, HStack, VStack, Text, Avatar, Spacer } from "native-base";
+import { Box, HStack, VStack, Text, Avatar, Spacer, Button } from "native-base";
 import { View } from "react-native";
+import { baseUrl } from "../../../api/garagiste";
 
 const Garage = (props)=> {
     const item = props.item.item
+
+    useEffect(()=>{
+      //console.log(baseUrl + item.logo.formats.thumbnail.url);
+    }, [])
 
     return (
         <Box
@@ -20,7 +25,7 @@ const Garage = (props)=> {
               <Avatar
                 size="48px"
                 source={{
-                  uri: item.avatarUrl,
+                  uri: baseUrl + item.logo.formats.thumbnail.url
                 }}
               />
               <VStack>
@@ -31,7 +36,7 @@ const Garage = (props)=> {
                   color="coolGray.800"
                   bold
                 >
-                  {item.fullName}
+                  {item.name}
                 </Text>
                 <Text
                   color="coolGray.600"
@@ -39,7 +44,7 @@ const Garage = (props)=> {
                     color: "warmGray.200",
                   }}
                 >
-                  {item.recentText}
+                  {item.address}
                 </Text>
               </VStack>
               <Spacer />
@@ -51,7 +56,7 @@ const Garage = (props)=> {
                 color="coolGray.800"
                 alignSelf="flex-start"
               >
-                {item.timeStamp}
+                <Button>details</Button>
               </Text>
             </HStack>
           </Box>

@@ -10,10 +10,10 @@ import {
     View,
   } from "native-base";
 
-import {baseUrl} from "../../api/garagiste";
+import {baseUrl} from "../../../api/garagiste";
 import moment from "moment";
 
-const Service = (props)=>{
+const Booking = (props)=>{
     const item = props.item.item;
     // pour rendez-vous qui n'ont pris
     let userBooker = item.user ? item.user : {firstname : "", lastname : ""}
@@ -40,7 +40,7 @@ const Service = (props)=>{
       } catch (error) {
         return (
           <View>
-            <Image  style = {styles.avatar} source = {require("../../../assets/user.png")}/>
+            <Image  style = {styles.avatar} source = {require("../../../../assets/user.png")}/>
           </View>
 
         );
@@ -130,4 +130,4 @@ const styles = StyleSheet.create({
 }
 })
 
-export default Service;
+export default Booking;

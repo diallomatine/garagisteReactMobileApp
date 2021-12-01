@@ -1,11 +1,11 @@
 import React, {useEffect} from "react"
 import {Box, Heading, FlatList} from 'native-base'
-import Service from "./service";
-import {baseUrl} from "../../api/garagiste";
+import Booking from "./booking";
+import {baseUrl} from "../../../api/garagiste";
 import moment from "moment";
 //http://localhost:1337/bookings?id=2&date_gt=2021-11-17T11:00:00.000Z
 
-const ListService = (props)=>{
+const ListBooking = (props)=>{
     const idGarage= props.idGarage;
     const dateState = props.dateState;
 
@@ -51,12 +51,12 @@ const ListService = (props)=>{
             </Heading>
             <FlatList
                 data={data}
-                renderItem={( item ) => <Service item={item} handleBookingClicked = {props.handleBookingClicked} />}
+                renderItem={( item ) => <Booking item={item} handleBookingClicked = {props.handleBookingClicked} />}
                 keyExtractor={(item) => item.id}
             />
     </Box>
     );
 }
 
-export default ListService;
+export default ListBooking;
 

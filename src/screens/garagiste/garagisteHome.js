@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import { Center, Select, CheckIcon, Alert } from "native-base";
 import { StyleSheet } from "react-native";
-import ListService from "./listService";
-import ServiceSorter from "./serviceSorter";
+import ListBooking from "./booking/listBooking";
+import BookingSorter from "./booking/bookingSorter";
 import {getUserGarages} from "../../api/garagiste";
 
 const GaraGisteHome = ({navigation})=>{
@@ -41,7 +41,7 @@ const GaraGisteHome = ({navigation})=>{
 
     return (
         <Center flex={0} px="1">
-          <ServiceSorter planRdvHandler={planRdvHandler}  setBookingDateState = {setBookingDateState}/>
+          <BookingSorter planRdvHandler={planRdvHandler}  setBookingDateState = {setBookingDateState}/>
 
           <Select
                     style={styles.service}
@@ -61,7 +61,7 @@ const GaraGisteHome = ({navigation})=>{
 
                 </Select>
 
-          <ListService  idGarage= {garage} dateState= {bookingDateState} handleBookingClicked= {handleBookingClicked}/>
+          <ListBooking  idGarage= {garage} dateState= {bookingDateState} handleBookingClicked= {handleBookingClicked}/>
         </Center>
     );
 

@@ -21,9 +21,7 @@ const AddGarage = (props) => {
       }
       return true;
     }
-    const addgarageToServer = ()=> {
 
-    }
     const handleValidateGarage = () => {
         if (formData.name === undefined  || formData.name.trim() === "") {
           setErrors({
@@ -70,7 +68,6 @@ const AddGarage = (props) => {
           }
           
         }
-
         if (formData.latitude !== undefined ){
           if (isNaN(formData.latitude)) {
             setErrors({
@@ -87,10 +84,9 @@ const AddGarage = (props) => {
           
         }
 
-        addGarageToServer(formData).then(response => {
-
+        addGarageToServer(formData).then(res => {
           Alert.alert("Garage ajouté avec succés")
-        }).catch(err => console.error(err))
+        }).catch(Alert.alert("un problème est survenu"))
         
         
     }
