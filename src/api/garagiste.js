@@ -7,6 +7,9 @@ const getUserGarages = (userId)=>{
 
 }
 
+const addGarageToServer = (garage) => {
+  return axios.post(`${baseUrl}/garages`, garage)
+}
 
-export  {baseUrl, getUserGarages};
-//module.exports.getGarageService= getGarageService
+
+export  {baseUrl, getUserGarages, addGarageToServer};
