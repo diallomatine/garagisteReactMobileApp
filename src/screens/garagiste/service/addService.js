@@ -15,14 +15,24 @@ export const AddService = (props) => {
   const [service, setService] = React.useState(-1)
   const [services, setServices] = useState([])
 
+
   const handleAddService = ()=> {
-      console.log(service);
+      //console.log(services);
+  }
+
+  const getUnUsedService = (data) => {
+    const result = data.filter(({ id: id1 }) => !props.services.some(({ id: id2 }) => id1 === id2));
+    return result;
   }
 
   useEffect(()=> {
     getServices()
-        .then(res => setServices(res.data))
+        .then(res => {
+          setServices(getUnUsedService(res.data))
+        })
+        .catch(err=> console.error(err))
   }, [])
+
   return (
     <View>
 

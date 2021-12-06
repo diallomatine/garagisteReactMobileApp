@@ -1,20 +1,25 @@
 import { View , Text, Heading, FlatList,Box, HStack, Spacer, 
   VStack, Button, Modal, FormControl, Input} from "native-base";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { StyleSheet, TouchableOpacity, Image, Alert } from "react-native";
+import { getGarageService } from "../../../api/garagiste";
 import AddService from "../service/addService";
 
 const Services = (props)=>{
-    //console.log(props.services);
-    const addService = ()=>{
-        console.log("add Service");
-    }
+
+  const [services, setServices] = useState([])
     const handleDeleteService = ()=> {
         Alert.alert("Suppression du service", "voulez-vous supprimer ce service", [
           {text : "Oui"},
           {text : "Annuler"}
         ])
     }
+
+    useEffect(()=>{
+      getGarageService(props.garageId)
+          .then(res => setServices(res.data.services))
+          .catch(err => console.error(err))
+    }, [])
 
     return (
         <Box
@@ -28,12 +33,12 @@ const Services = (props)=>{
             List des services du garage
             </Heading>
 
-            <AddService />
+            <AddService  services = {services}/>
             
         </View>
 
       <FlatList
-        data={props.services}
+        data={services}
         renderItem={({ item }) => (
           <Box
             borderBottomWidth="1"
@@ -79,59 +84,6 @@ const Services = (props)=>{
     )
     
 }
-
-/*export const AddService = () => {
-  const [showModal, setShowModal] = useState(false)
-  
-  const addService = ()=>{
-    //<Button onPress={() => setShowModal(true)}>Button</Button>
-  }
-  return (
-    <View>
-      
-      <TouchableOpacity onPress={()=> setShowModal(true)}>
-          <Image style = {styles.addIcon} source = {require("../../../../assets/add.png")}/>
-      </TouchableOpacity>
-
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-        <Modal.Content maxWidth="400px">
-          <Modal.CloseButton />
-          <Modal.Header>Contact Us</Modal.Header>
-          <Modal.Body>
-            <FormControl>
-              <FormControl.Label>Name</FormControl.Label>
-              <Input />
-            </FormControl>
-            <FormControl mt="3">
-              <FormControl.Label>Email</FormControl.Label>
-              <Input />
-            </FormControl>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button.Group space={2}>
-              <Button
-                variant="ghost"
-                colorScheme="blueGray"
-                onPress={() => {
-                  setShowModal(false)
-                }}
-              >
-                Cancel
-              </Button>
-              <Button
-                onPress={() => {
-                  setShowModal(false)
-                }}
-              >
-                Save
-              </Button>
-            </Button.Group>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
-      </View>
-  )
-}*/
 
 const styles = StyleSheet.create({
     title : {
