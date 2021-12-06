@@ -1,16 +1,17 @@
 import React, {useEffect} from "react";
 import { Box, HStack, VStack, Text, Avatar, Spacer, Button } from "native-base";
-import { View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { baseUrl } from "../../../api/garagiste";
 
 const Garage = (props)=> {
     const item = props.item.item
 
-    useEffect(()=>{
-      //console.log(baseUrl + item.logo.formats.thumbnail.url);
-    }, [])
+
 
     return (
+      <TouchableOpacity onPress={()=> props.handleGarageClicked(item)}>
+
+      
         <Box
             borderBottomWidth="1"
             _dark={{
@@ -56,10 +57,10 @@ const Garage = (props)=> {
                 color="coolGray.800"
                 alignSelf="flex-start"
               >
-                <Button>details</Button>
               </Text>
             </HStack>
           </Box>
+          </TouchableOpacity>
         
     );
 

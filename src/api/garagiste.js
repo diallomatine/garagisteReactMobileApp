@@ -11,5 +11,9 @@ const addGarageToServer = (garage) => {
   return axios.post(`${baseUrl}/garages`, garage)
 }
 
+const getGarageBookings = (garageId) => {
+  return axios.get(`${baseUrl}/bookings?garage=${garageId}`);
+}
 
-export  {baseUrl, getUserGarages, addGarageToServer};
+
+export  {baseUrl, getUserGarages, addGarageToServer, getGarageBookings};
