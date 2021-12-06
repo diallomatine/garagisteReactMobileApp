@@ -19,5 +19,10 @@ const getServices = ()=> {
   return axios.get(`${baseUrl}/services`)
 }
 
+const AddService = (serviceId)=>{
+  return axios.put(`${baseUrl}/`)
+}
 
-export  {baseUrl, getUserGarages, addGarageToServer, getGarageBookings, getServices};
+
+export  {baseUrl, getUserGarages, addGarageToServer,AddService,
+   getGarageBookings, getServices};
