@@ -43,7 +43,7 @@ const GarageDetail = ({route, navigation})=>{
             
             {
                 state == "services" && (
-                    <Services  services = {garage.services} garageId={garage.id}/>
+                    <Services  garageId={garage.id}/>
                 )
             }
             {

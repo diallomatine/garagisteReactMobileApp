@@ -1,9 +1,9 @@
 import React, {useEffect} from "react";
 import {  Button, Heading, VStack , TextArea, Text, Input, Center} from "native-base";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import GarageService from "../garage/garageservice";
-import {baseUrl} from "../../../api/garagiste";
+import {addBooking, baseUrl} from "../../../api/garagiste";
 
 
 const PlanAppointement = ({route, navigation}) =>{
@@ -27,23 +27,12 @@ const PlanAppointement = ({route, navigation}) =>{
         const data = {service : currentServiceId, garage : currentGarageId,
             date : date, description : commentaire, price : price, status : "VALIDATED"};
         
-        
-        const requestBody = JSON.stringify(data);    
-            
-        const requestConfig = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-                body: requestBody,
-              };
+            addBooking(data)
+                .then(res => {
+                    Alert.alert("réservation ajouté avec sccé")
+                })
+                .catch(err => console.error(err))
 
-            fetch(baseUrl+"/bookings", requestConfig)
-                    .then(response => response.json())
-                    .then(res => {
-                        console.log("poste avec succes")
-                    })
-                    .catch(err => console.error(err))
 
     }
 

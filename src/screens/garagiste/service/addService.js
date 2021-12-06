@@ -6,36 +6,43 @@ import {
   View,
 } from "native-base"
 import  { useState } from "react"
-import { TouchableOpacity, Image, StyleSheet } from "react-native"
-import { getServices } from "../../../api/garagiste"
+import { TouchableOpacity, Image, StyleSheet, Alert } from "react-native"
+import { getServices, updateGarageServices } from "../../../api/garagiste"
 
-export const AddService = (props) => {
+
+
+const AddService = (props) => {
   const [showModal, setShowModal] = useState(false)
 
   const [service, setService] = React.useState(-1)
-  const [services, setServices] = useState([])
+  const [services, setServices] = useState(props.services)
 
 
   const handleAddService = ()=> {
-      //console.log(services);
+      const newServices = services.filter(e => e.id === service)
+      const result = newServices.concat(props.services)
+
+      updateGarageServices(props.garageId, result)
+          .then(res => Alert.alert("Service ajouté avec succé"))
+          .catch(err => console.error(err))
   }
 
-  const getUnUsedService = (data) => {
-    const result = data.filter(({ id: id1 }) => !props.services.some(({ id: id2 }) => id1 === id2));
+  const getUnUsedService = (allServices, garageServices) => {
+    const result = allServices.filter(({ id: id1 }) => !garageServices.some(({ id: id2 }) => id1 === id2));
     return result;
   }
 
   useEffect(()=> {
     getServices()
         .then(res => {
-          setServices(getUnUsedService(res.data))
+          setServices(res.data)
         })
         .catch(err=> console.error(err))
   }, [])
 
+
   return (
     <View>
-
       <TouchableOpacity onPress={()=> setShowModal(true)}>
           <Image style = {styles.addIcon} source = {require("../../../../assets/add.png")}/>
       </TouchableOpacity>
@@ -63,7 +70,7 @@ export const AddService = (props) => {
                     mt={1}
                     onValueChange={(service) => setService(service)}
                 >
-                    {services.map((e,i) => <Select.Item label={e.name}  value={e.id} key={e.id}/>)}
+                    {getUnUsedService(services, props.services).map((e,i) => <Select.Item label={e.name}  value={e.id} key={e.id}/>)}
 
                 </Select>
             </View>
@@ -96,7 +103,6 @@ const styles = StyleSheet.create({
         borderRadius : 27/2,
         margin  : 15,
         alignSelf : "stretch"
-
     },
     deleteIcon : {
         width : 25,

@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity, Alert } from "react-native";
 import { Avatar, Heading } from "native-base";
-import {baseUrl} from "../../../api/garagiste";
+import {baseUrl, deleteBooking, upDateBookingDate} from "../../../api/garagiste";
 import moment from "moment";
 require('moment/locale/fr');
 import BookingEditor from './bookingEditor'
@@ -35,20 +35,9 @@ const DetailBooking = ({route, navigation})=>{
         }
     }
 
-    const updateBookingDate = (newDate)=>{
+    const handleUpdateBookingDate = (newDate)=>{
         booking.date = newDate
-        const requestBody = JSON.stringify(booking);
-
-        const requestConfig = {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-                body: requestBody,
-        };
-
-        fetch(baseUrl+"/bookings/"+booking.id, requestConfig)
-            .then(response => response.json())
+        upDateBookingDate(booking.id, booking)
             .then(res => {
                 setDate(newDate);
                 setModalVisible(false)
@@ -58,21 +47,13 @@ const DetailBooking = ({route, navigation})=>{
 
         
     }
-    const deleteBooking =  ()=>{
-        const requestConfig = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        };
-        fetch(baseUrl+"/bookings/"+booking.id, requestConfig)
-            .then(response => response.json())
+    const handleDeletebooking =  ()=>{
+        deleteBooking(booking.id)
             .then(res => {
                 Alert.alert("Supprimer avec succés")
                 navigation.goBack()
             })
-            .catch(err => console.error(err))
-        
+            .catch(err=> console.error(err))        
     }
     
 
@@ -83,7 +64,7 @@ const DetailBooking = ({route, navigation})=>{
 
     const handleDeleteClicked = ()=>{
         Alert.alert("Suppression", "Voulez-vous supprimer ce RDV", [
-            {text : "Oui", onPress : () => {deleteBooking()}},
+            {text : "Oui", onPress : () => {handleDeletebooking()}},
             {text : "Annuler"}
         ])
     }
@@ -92,7 +73,7 @@ const DetailBooking = ({route, navigation})=>{
     return (
         <View >
             <BookingEditor modalVisible={modalVisible} date = {date} 
-                setModalVisible = {setModalVisible} updateBookingDate ={updateBookingDate}
+                setModalVisible = {setModalVisible} updateBookingDate ={handleUpdateBookingDate}
                 />
 
             <View style={styles.user_container}>

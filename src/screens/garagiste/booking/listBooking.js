@@ -1,7 +1,7 @@
 import React, {useEffect} from "react"
 import {Box, Heading, FlatList} from 'native-base'
 import Booking from "./booking";
-import {baseUrl} from "../../../api/garagiste";
+import {baseUrl, getGarageBookingsByDate} from "../../../api/garagiste";
 import moment from "moment";
 //http://localhost:1337/bookings?id=2&date_gt=2021-11-17T11:00:00.000Z
 
@@ -30,12 +30,8 @@ const ListBooking = (props)=>{
         return res;
     }
     useEffect(()=>{
-        const url = baseUrl+'/bookings?garage='+ idGarage+'&'+ dateUrlFilter()
-        fetch(url)
-            .then(response => response.json())
-            .then(res => {
-                setData(res)
-            })
+        getGarageBookingsByDate(idGarage, dateUrlFilter())
+            .then(res => setData(res.data))
             .catch(err => console.error(err))
     }, [idGarage, dateState]);
 

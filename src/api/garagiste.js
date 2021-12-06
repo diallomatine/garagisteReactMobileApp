@@ -17,13 +17,31 @@ const getServices = ()=> {
   return axios.get(`${baseUrl}/services`)
 }
 
-const AddService = (serviceId)=>{
-  return axios.put(`${baseUrl}/`)
-}
 
 const getGarageService = (garageId)=> {
   return axios.get(`${baseUrl}/garages/${garageId}`)
 }
 
-export  {baseUrl, getUserGarages, addGarageToServer,AddService,
-   getGarageBookings, getServices, getGarageService};
+const updateGarageServices = (garageId, services) => {
+  return axios.put(`${baseUrl}/garages/${garageId}`, {services : services})
+}
+
+const deleteBooking = (bookingId)=>{
+  return axios.delete(`${baseUrl}/bookings/${bookingId}`)
+}
+
+const upDateBookingDate = (bookingId, booking)=>{
+  return axios.put(`${baseUrl}/bookings/${bookingId}`, booking)
+}
+
+const addBooking = (booking)=> {
+  return axios.post(`${baseUrl}/bookings`, booking)
+}
+
+const getGarageBookingsByDate = (garageId, date)=>{
+  return axios.get(`${baseUrl}/bookings?garage=${garageId}&${date}`)
+}
+
+export  {baseUrl, getUserGarages, addGarageToServer,updateGarageServices,
+   getGarageBookings, getServices, getGarageService, deleteBooking, upDateBookingDate,
+   addBooking, getGarageBookingsByDate};

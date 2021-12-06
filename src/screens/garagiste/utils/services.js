@@ -1,19 +1,25 @@
 import { View , Text, Heading, FlatList,Box, HStack, Spacer, 
-  VStack, Button, Modal, FormControl, Input} from "native-base";
+  VStack} from "native-base";
 import React, {useEffect, useState} from "react";
 import { StyleSheet, TouchableOpacity, Image, Alert } from "react-native";
-import { getGarageService } from "../../../api/garagiste";
+import { getGarageService, updateGarageServices } from "../../../api/garagiste";
 import AddService from "../service/addService";
 
 const Services = (props)=>{
 
   const [services, setServices] = useState([])
-    const handleDeleteService = ()=> {
-        Alert.alert("Suppression du service", "voulez-vous supprimer ce service", [
-          {text : "Oui"},
-          {text : "Annuler"}
-        ])
-    }
+
+  const handleDeleteService = (item)=> {
+    const newServices = services.filter(e => e.id !== item.id)
+      Alert.alert("Suppression du service", "voulez-vous supprimer ce service", [
+        {text : "Oui", onPress : ()=> {
+          updateGarageServices(props.garageId, newServices)
+              .then(res=> Alert.alert("Supprimer avec succé"))
+              .catch(err=> console.error(err))
+        }  },
+        {text : "Annuler"}
+      ])
+  }
 
     useEffect(()=>{
       getGarageService(props.garageId)
@@ -32,8 +38,7 @@ const Services = (props)=>{
             <Heading fontSize="xl" p="4" pb="3">
             List des services du garage
             </Heading>
-
-            <AddService  services = {services}/>
+            <AddService  services = {services} garageId={props.garageId}/>
             
         </View>
 
@@ -72,7 +77,7 @@ const Services = (props)=>{
               </VStack>
               <Spacer />
               
-              <TouchableOpacity  onPress={handleDeleteService}>
+              <TouchableOpacity  onPress={() => handleDeleteService(item)}>
                     <Image style={styles.deleteIcon} source={require("../../../../assets/delete.png")}/>
                 </TouchableOpacity>
             </HStack>
@@ -95,7 +100,6 @@ const styles = StyleSheet.create({
         borderRadius : 27/2,
         margin  : 15,
         alignSelf : "stretch"
-
     },
     deleteIcon : {
         width : 25,
