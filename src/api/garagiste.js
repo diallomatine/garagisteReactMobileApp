@@ -15,5 +15,9 @@ const getGarageBookings = (garageId) => {
   return axios.get(`${baseUrl}/bookings?garage=${garageId}`);
 }
 
+const getServices = ()=> {
+  return axios.get(`${baseUrl}/services`)
+}
 
-export  {baseUrl, getUserGarages, addGarageToServer, getGarageBookings};
+
+export  {baseUrl, getUserGarages, addGarageToServer, getGarageBookings, getServices};

@@ -2,6 +2,7 @@ import { View , Text, Heading, FlatList,Box, HStack, Spacer,
   VStack, Button, Modal, FormControl, Input} from "native-base";
 import React, {useState} from "react";
 import { StyleSheet, TouchableOpacity, Image, Alert } from "react-native";
+import AddService from "../service/addService";
 
 const Services = (props)=>{
     //console.log(props.services);
@@ -79,7 +80,7 @@ const Services = (props)=>{
     
 }
 
-export const AddService = () => {
+/*export const AddService = () => {
   const [showModal, setShowModal] = useState(false)
   
   const addService = ()=>{
@@ -130,7 +131,7 @@ export const AddService = () => {
       </Modal>
       </View>
   )
-}
+}*/
 
 const styles = StyleSheet.create({
     title : {
